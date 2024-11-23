@@ -4,6 +4,7 @@ import './index.css';
 function Homepage(){
 
     return(
+
         <div className='Homepage'>
 
             <div className='Top_bar'>
@@ -17,6 +18,7 @@ function Homepage(){
 
                 <input className='Side_bar_input'></input>
             </div>
+
 
         </div>
     )

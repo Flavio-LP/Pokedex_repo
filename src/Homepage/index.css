@@ -22,7 +22,7 @@
 }
 
 .Side_bar{
-    background-color: rgb(69, 73, 73);
+    background: black;
     display: flex;
     height: 90vh;
     width: 25vw;
