@@ -6,9 +6,6 @@ function Homepage(){
 
 
     const [pokemon, setPokemon] = useState("");
-    // const [pokemonData, setPokemonData] = useState([])
-    // const [pokemonType, setPokemonType] = useState("")
-
 
     const getPokemon = async() => {
         const toArray = [];
