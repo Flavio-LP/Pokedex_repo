@@ -39,9 +39,27 @@
     width: 8vw;
 }
 
+.Center_div{
+    display: flex;
+    width: 75vw;
+    height: 90vh;
+}
+
+.body_page{
+
+    display: flex;
+}
+
 .body{
 
     display: flex;
     height: 100vh;
     width: 75vw;
+}
+
+.stats_pokemon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }
