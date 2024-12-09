@@ -1,31 +1,49 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './index.css';
 import axios from 'axios';
 
 function Homepage(){
 
 
-    const [pokemon, setPokemon] = useState("");
+    const [pokemon, setPokemon] = useState('');
+    const [data, setData] = useState(null);
 
-    const getPokemon = async() => {
+
+     const handleChange = (e: { target: { value: string; }; }) => {
+        setPokemon(e.target.value.toLowerCase())
+        console.log({pokemon})
+        //getPokemon(); 
+        
+     }
+
+     useEffect(() => {
+        const debounceTimeout = setTimeout(() => { getPokemon()},50)
+     },);
+
+    //  useEffect(() => {
+    //     const debounceTimeout = setTimeout(() => {
+    //       // Realiza o request somente se houver um valor no input.
+    //       if (pokemon) {
+    //         getPokemon()
+    //       }
+    //     }, 500); // 500ms de debounce
+    
+    //     // Limpa o timeout anterior ao desmontar ou antes de criar um novo.
+    //     return () => clearTimeout(debounceTimeout);
+    //   }, [pokemon]); // Sempre usa o valor atualizado.
+
+      const getPokemon = async() => {
         const toArray = [];
         try{
             const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
             const res = await axios.get(url)
             toArray.push(res.data);
+            console.log(toArray)
          
         } catch(e) {
             console.log(e)
         }
     } 
-
-
-
-     const handleChange = (e: { target: { value: string; }; }) => {
-        getPokemon(); 
-        //setPokemon(e.target.value.toLowerCase())
-     }
-
     
     return(
 
