@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {KeyboardEvent, useEffect, useState} from 'react'
 import './index.css';
 import axios from 'axios';
 
@@ -7,30 +7,30 @@ function Homepage(){
 
     const [pokemon, setPokemon] = useState('');
     const [data, setData] = useState(null);
+    const [Key,setKey] = useState(null);
+    const [Validador, setValidador] = useState('');
 
 
-     const handleChange = (e: { target: { value: string; }; }) => {
-        setPokemon(e.target.value.toLowerCase())
-        console.log({pokemon})
-        //getPokemon(); 
+    function handleKeyPress(event: KeyboardEvent<HTMLInputElement>) {
+
+        let key = event.key;
         
-     }
+       if (key == 'Enter')
+            setPokemon(Validador);
+        getPokemon();
+      }
 
-     useEffect(() => {
-        const debounceTimeout = setTimeout(() => { getPokemon()},50)
-     },);
+      const handleChange = (e: { target: { value: string; }; }) => {
+        setValidador(e.target.value.toLowerCase())
+        //console.log({pokemon}) 
+        
+    }
+
 
     //  useEffect(() => {
-    //     const debounceTimeout = setTimeout(() => {
-    //       // Realiza o request somente se houver um valor no input.
-    //       if (pokemon) {
-    //         getPokemon()
-    //       }
-    //     }, 500); // 500ms de debounce
-    
-    //     // Limpa o timeout anterior ao desmontar ou antes de criar um novo.
-    //     return () => clearTimeout(debounceTimeout);
-    //   }, [pokemon]); // Sempre usa o valor atualizado.
+    //     const debounceTimeout = setTimeout(() => { getPokemon()},50)
+    //  },);
+
 
       const getPokemon = async() => {
         const toArray = [];
@@ -61,7 +61,9 @@ function Homepage(){
                 <div className='Side_bar'>
                     <h3 className='Side_bar_title'>Search a pokémon</h3>
 
-                    <input className='Side_bar_input' onChange={handleChange} ></input>
+
+                        <input className='Side_bar_input' onChange={handleChange}  onKeyPress={(event) => handleKeyPress(event)} ></input>
+
 
                     <div className='stats_pokemon'>
                         <h2>HP</h2>
